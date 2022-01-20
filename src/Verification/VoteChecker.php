@@ -157,7 +157,7 @@ class VoteChecker
         $this->register(VoteVerifier::for('gtop100.com')
             ->retrieveKeyByRegex('/^gtop100\.com\/topsites\/[\w\d-]+\/sitedetails\/[\w\d-]+\-(\d+)/')
             ->verifyByPingback(function (Request $request) {
-                abort_if(! in_array($request->ip(), ['198.148.82.98', '198.148.82.99'], true), 403);
+                abort_if(! in_array($request->ip(),  ['198.148.82.98', '198.148.82.99', '2610:150:8019::1:fc02'], true), 403);
 
                 if ($request->input('Successful') === '0') {
                     Cache::put("vote.sites.gtop100.com.{$request->input('VoterIP')}", true, now()->addMinutes(5));
